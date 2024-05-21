@@ -9,5 +9,10 @@ btn_pesq.addEventListener("click",(evt)=>{
         return
     }
     const f_pesq = document.querySelector("input[name=f_pesq]:checked").value
-    console.log(f_pesq)
+    const endpoint = `http://localhost:1880/pesquisarcontatos/${f_pesq}`
+    fetch(endpoint)
+    .then(res=>res.json())
+    .then(res=>{
+        console.log(res)
+    })
 })
