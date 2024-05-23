@@ -16,3 +16,5 @@ btn_pesq.addEventListener("click",(evt)=>{
         console.log(res)
     })
 })
+
+  
