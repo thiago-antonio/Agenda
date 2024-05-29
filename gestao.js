@@ -1,4 +1,30 @@
 const dados = document.querySelector("#dados")
+const Fundopopup = document.querySelector("#Fundopopup")
+const btn_gravar = document.querySelector("#btn_gravar")
+const btn_cancelar = document.querySelector("#btn_cancelar")
+const f_id = document.querySelector("#f_id")
+const f_nome = document.querySelector("#f_nome")
+const f_celular = document.querySelector("#f_celular")
+const f_email = document.querySelector("#f_email")
+const f_dtnasc = document.querySelector("#f_dtnasc")
+
+
+btn_gravar.addEventListener("click",(evt)=>{
+    Fundopopup.classList.add("ocultar")
+    const endpoint = `http://127.0.0.1:1880/atualizarcontatos/${f_id.value}/${f_nome.value}/${f_celular.value}/${f_email.value}/${f_dtnasc.value}`
+    fetch(endpoint)
+    .then(res=>{
+        if(res.status==200){
+            alert("Dados atualizados")
+            preencherdgv()
+        }else {
+            alert("Erro ao atualizar dados")
+        }
+    })
+})
+btn_cancelar.addEventListener("click",(evt)=>{
+    Fundopopup.classList.add("ocultar")
+})
 
 
 const preencherdgv=()=>{
@@ -49,6 +75,15 @@ const preencherdgv=()=>{
             const imgeditar = document.createElement("img")
             imgeditar.setAttribute("src","edit.svg")
             imgeditar.setAttribute("class","iconeop")
+            imgeditar.addEventListener("click",(evt)=>{
+                Fundopopup.classList.remove("ocultar")
+                const dados = [...evt.target.parentNode.parentNode.childNodes]
+                f_id.value = dados[0].innerHTML
+                f_nome.value = dados[1].innerHTML
+                f_celular.value = dados[2].innerHTML
+                f_email.value = dados[3].innerHTML
+                f_dtnasc.value = dados[4].innerHTML
+            })
             c6.appendChild(imgdelete)
             c6.appendChild(imgeditar)
             linha.appendChild(c6)
