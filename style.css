@@ -177,7 +177,7 @@ label {
 .linhadados {
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: row;
     width: inherit;
     background-color: #fff;
@@ -206,4 +206,20 @@ label {
 .c6 {
     width: 8;
 }
+
+.c_op {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/***************/
+
+/* Gestão */
+.iconeop{
+    width: 40%;
+    cursor: pointer;
+}
+
+
 /***************/

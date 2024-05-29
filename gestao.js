@@ -39,11 +39,16 @@ const preencherdgv=()=>{
 
 
             const c6 = document.createElement("div")
-            c6.setAttribute("class","coluna c6")
+            c6.setAttribute("class","coluna c6 c_op")
             const imgdelete = document.createElement("img")
             imgdelete.setAttribute("src","delete.svg")
+            imgdelete.setAttribute("class","iconeop")
+            imgdelete.addEventListener("click",(evt)=>{
+                removerContato(evt.target.parentNode.parentNode.firstChild.innerHTML)
+            })
             const imgeditar = document.createElement("img")
             imgeditar.setAttribute("src","edit.svg")
+            imgeditar.setAttribute("class","iconeop")
             c6.appendChild(imgdelete)
             c6.appendChild(imgeditar)
             linha.appendChild(c6)
@@ -54,3 +59,13 @@ const preencherdgv=()=>{
 }
 
 preencherdgv()
+
+const removerContato = (id)=>{
+    const endpoint = `http://127.0.0.1:1880/deletarcontatos/${id}`
+    fetch(endpoint)
+    .then(res=>{
+        if(res.status==200){
+            preencherdgv()
+        }
+    })
+}
