@@ -7,30 +7,14 @@ const f_nome = document.querySelector("#f_nome")
 const f_celular = document.querySelector("#f_celular")
 const f_email = document.querySelector("#f_email")
 const f_dtnasc = document.querySelector("#f_dtnasc")
+const btn_filtrar = document.querySelector("#btn_filtrar")
+const f_filtronome = document.querySelector("#f_filtronome")
 
 
-btn_gravar.addEventListener("click",(evt)=>{
-    Fundopopup.classList.add("ocultar")
-    const endpoint = `http://127.0.0.1:1880/atualizarcontatos/${f_id.value}/${f_nome.value}/${f_celular.value}/${f_email.value}/${f_dtnasc.value}`
-    fetch(endpoint)
-    .then(res=>{
-        if(res.status==200){
-            //alert("Dados atualizados")
-            preencherdgv()
-        }else {
-            alert("Erro ao atualizar dados")
-        }
-    })
-})
-btn_cancelar.addEventListener("click",(evt)=>{
-    Fundopopup.classList.add("ocultar")
-})
-
-
-const preencherdgv=()=>{
+const preencherdgv=(endpoint)=>{
     dados.innerHTML = ""
-    const endpoint = `http://127.0.0.1:1880/pesquisartodoscontatos`
-    fetch(endpoint)
+    const endpointtodoscontatos = `http://127.0.0.1:1880/pesquisartodoscontatos`
+    fetch(endpointtodoscontatos)
     .then(res=>res.json())
     .then(res=>{
         dados.innerHTML = ""
@@ -64,7 +48,7 @@ const preencherdgv=()=>{
             linha.appendChild(c5)
 
 
-            const c6 = document.createElement("div")
+            /*const c6 = document.createElement("div")
             c6.setAttribute("class","coluna c6 c_op")
             const imgdelete = document.createElement("img")
             imgdelete.setAttribute("src","delete.svg")
@@ -86,7 +70,7 @@ const preencherdgv=()=>{
             })
             c6.appendChild(imgdelete)
             c6.appendChild(imgeditar)
-            linha.appendChild(c6)
+            linha.appendChild(c6)*/
 
             dados.appendChild(linha)
         });
@@ -95,7 +79,7 @@ const preencherdgv=()=>{
 
 preencherdgv()
 
-const removerContato = (id)=>{
+/*const removerContato = (id)=>{
     const endpoint = `http://127.0.0.1:1880/deletarcontatos/${id}`
     fetch(endpoint)
     .then(res=>{
@@ -103,4 +87,12 @@ const removerContato = (id)=>{
             preencherdgv()
         }
     })
-}
+}*/
+
+btn_filtrar.addEventListener("click",(evt)=>{
+    if(f_filtronome.value == ""){
+        preencherdgv("http://127.0.0.1:1880/pesquisartodoscontatos")
+    }else {
+            preencherdgv(`http://127.0.0.1:1880/filtrar/${f_filtronome.value}`)
+        }
+})

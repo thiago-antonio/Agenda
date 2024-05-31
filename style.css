@@ -227,6 +227,11 @@ label {
     cursor: pointer;
 }
 
+.iconefiltro{
+    width: 40px;
+    cursor: pointer;
+}
+
 
 /***************/
 
@@ -282,4 +287,12 @@ label {
     border-radius: 0px 0px 5px 5px;
 }
 
+/***************/
+
+/* Filtrar */
+.filtro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /***************/
