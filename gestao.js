@@ -8,6 +8,11 @@ const f_celular = document.querySelector("#f_celular")
 const f_email = document.querySelector("#f_email")
 const f_dtnasc = document.querySelector("#f_dtnasc")
 
+fetch("gestao.php")
+.then(res => res.json())
+.then(res=>{
+    console.log(res)
+})
 
 btn_gravar.addEventListener("click",(evt)=>{
     Fundopopup.classList.add("ocultar")
